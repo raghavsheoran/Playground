@@ -1,1 +1,3 @@
-# Playground
+- This repository contains my solutions to Codeforces problems. Each file corresponds to a single problem and is named after the question.
+- You can navigate through the files to find solutions to specific problems. Feel free to use these solutions for learning purposes or as a reference, but remember not to directly copy them for submissions on Codeforces.
+- If you have a different approach to solving a problem or have found a more efficient solution, feel free to contribute by opening a pull request. Please ensure that your code is well-documented and follows the same format as existing files.
