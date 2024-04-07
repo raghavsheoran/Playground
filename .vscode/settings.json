@@ -4,7 +4,8 @@
         "vector": "cpp",
         "iostream": "cpp",
         "ios": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "unordered_map": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled",
     "problems.showCurrentInStatus": true
