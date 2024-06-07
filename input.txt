@@ -1,5 +1,32 @@
-2
-4
-3 -4 5
-11
--30 12 -57 7 0 -81 -68 41 -89 0
+a
+a
+a
+b
+a
+b
+b
+b
+a
+aa
+aa
+b
+ba
+a
+ba
+b
+ab
+a
+b
+ab
+bb
+a
+bb
+b
+aa
+aa
+ba
+aa
+aa
+ab
+bb
+aa
