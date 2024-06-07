@@ -11,9 +11,7 @@ int main(){
         int res=0;
         for(int i=0; i<n; i++) {int k; cin>>k; mp[k]++;}
         for(auto it=mp.begin(); it!=mp.end(); it++){
-            for(int j=3; j<=it->second; j++){
-                if(it->second%j==0) res+=(it->second/j);
-            }
+            res+=it->second/3;
         }
         cout<<res<<endl;
 

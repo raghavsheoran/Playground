@@ -1,18 +1,23 @@
 #include<iostream>
-#include<unordered_map>
 using namespace std;
+int res(int a, int b, int c){
+    int ans=0;
+    for(int x=0; x<=(a+b+c)/2; x++){
+        for(int y=0; y<=(a+b+c)/2-x; y++){
+            for(int z=0; z<=(a+b+c)/2-x-y; z++){
+                int aa,bb,cc;
+                aa=a-(x+z);
+                bb=b-(x+y);
+                cc=c-(y+z);
+                if(aa>=0 && aa%2==0 && bb>=0 && bb%2==0 && cc>=0 && cc%2==0) ans=max(ans,x+y+z);
 
+            }
+        }
+    }
+    return ans;
 
-int max_rec(int a,int b, int c, unordered_map<string,int> & mp){
-    if((a==0 && b==0)|| (b==0 && c==0)|| (a==0 && c==0)) return 0;
-    else if(a<0 || b<0 || c<0) return 0;
-    if(mp.find("to_string(a)_to_string(b)_to_string(c)")!=mp.end()) return mp["to_string(a)_to_string(b)_to_string(c)"];
-
-    mp["to_string(a)_to_string(b)_to_string(c)"]=1+max(max_rec(a-1,b-1,c,mp),max(max_rec(a,b-1,c-1,mp),max_rec(a-1,b,c-1,mp)));
-    return mp["to_string(a)_to_string(b)_to_string(c)"];
 }
 int main(){
-    unordered_map<string,int> mp;
     int t;
     cin>>t;
     for(int i=0; i<t; i++){
@@ -20,9 +25,11 @@ int main(){
         cin>>a>>b>>c;
         if((a+b+c)%2!=0) cout<<-1<<endl;
         else{
-        cout<<max_rec(a,b,c,mp)<<endl;
+        cout<<res(a,b,c)<<endl;
         }
     }
     return 0;
 
 }
+
+

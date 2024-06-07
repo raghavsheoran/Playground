@@ -9,7 +9,6 @@ int main(){
     st.insert('H');
     st.insert('Q');
     st.insert('9');
-    st.insert('+');
     bool possible=false;
     for(int i=0; i<s.length(); i++){
         if(st.find(s[i])!=st.end()) {possible=true; break;}
