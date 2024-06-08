@@ -1,32 +1,4 @@
-a
-a
-a
-b
-a
-b
-b
-b
-a
-aa
-aa
-b
-ba
-a
-ba
-b
-ab
-a
-b
-ab
-bb
-a
-bb
-b
-aa
-aa
-ba
-aa
-aa
-ab
-bb
-aa
+3
+3 3
+2 4
+5 3

@@ -6,6 +6,11 @@
 *.lo
 *.o
 *.obj
+# unix executable file
+*
+!*.*
+!*/
+
 
 # Precompiled Headers
 *.gch
