@@ -11,7 +11,10 @@
 !*.*
 !*/
 
-
+.vscode
+.DS_Store
+input.txt
+output.txt
 # Precompiled Headers
 *.gch
 *.pch
