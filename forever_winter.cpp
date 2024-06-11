@@ -48,6 +48,46 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+    ll n,m; // no of vertices and no of edges
+    cin>>n>>m;
+    vector<vector<int>> adj_list(n);
+    FOR(0,m){
+        ll u,v;
+        cin>>u>>v;
+        adj_list[u-1].pb(v-1);
+        adj_list[v-1].pb(u-1);
+    }
+    unordered_map<int,int> frequency;
+    unordered_map<int,vi> nodes;
+    
+    FOR(0,n){
+        frequency[adj_list[i].size()]++; // will store how many vertex are having a particlular number of neighbour
+        nodes[adj_list[i].size()].push_back(i); // this size is possesed by this node
+    }
+    
+    // the size of frequency map can be 2 or 3
+    if(frequency.size()==3){
+        int x,y;
+        for(auto it=frequency.begin(); it!=frequency.end(); it++){
+            if(it->first==1) { }
+            else if(it->second==1) x=it->first;
+            else y=it->first-1;
+        }
+    cout<<x<<" "<<y;
+    }
+    else{
+        int a=1,b;
+        for(auto it=frequency.begin(); it!=frequency.end(); it++){
+            if(it->first!=1) b=it->first; // number is it->second
+        }
+        if(frequency[b]*(b-1)==frequency[a]-1) cout<<1<<" "<<b-1;
+        else cout<<b<<" "<<b-1;
+        // one possible answe is a b, lets contracdisct it
+
+    }
+    cout<<endl;
+
+    
     
 
 } 
@@ -56,7 +96,7 @@ int main(){
     int t;
     //t=1;
     cin>>t;
-    FOR(0,t) test();
+    for(int i=0; i<t; i++) test();
     int n;
 
 }
