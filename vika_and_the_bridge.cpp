@@ -48,19 +48,41 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    int n;
-    cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+   int n,c;
+   cin>>n>>c;
+   vector<int> nums(n);
+   for(int i=0; i<n; i++) cin>>nums[i];
+   vector<int> prev(c+1,-1); // -1 being the ground from where the bridge start
+   vector<int> largest(c+1,INT_MIN); // largest gap 
+   vector<int> second_largest(c+1,INT_MIN); // second largest gap
+   for(int i=0; i<n; i++){
+    int color=nums[i];
+    int gap=i-prev[color]-1;
+    prev[color]=i;
+    if(gap>=largest[color]){second_largest[color]=largest[color]; largest[color]=gap;}
+    else if(gap>=second_largest[color]){
+        second_largest[color]=gap;
     }
-    cout<<res<<endl;
+    
+   }
+   for(int i=1; i<=c; i++){
+    int gap=n-prev[i]-1;
+    if(gap>=largest[i]){second_largest[i]=largest[i]; largest[i]=gap;}
+    else if(gap>=second_largest[i]){
+        second_largest[i]=gap;
+    }
+    }
+   
+   int res=INT_MAX;
+   for(int i=1; i<=c; i++){
+    int best_option=largest[i]/2;
+    if(second_largest[i]!=INT_MIN){
+        best_option=max(best_option,second_largest[i]);
+    }
+    res=min(res,best_option);
+
+   }
+   cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//

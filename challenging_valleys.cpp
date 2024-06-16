@@ -50,17 +50,25 @@ using namespace std;
 void test(){
     int n;
     cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
+    vi nums(n);
     for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+    int valley=0;
+    int left=0;
+    int right=0;
+    while(right<n){
+        while(right<n && nums[right]==nums[left]) right++;
+        // left=starting point
+        //right= next to ending point
+        int l=INT_MAX;
+        int r=INT_MAX;
+        if(left-1>=0 ) l=nums[left-1];
+        if(right<n) r=nums[right];
+        if(nums[left]<l && nums[left]<r) valley++;
+        left=right;
     }
-    cout<<res<<endl;
+    
+    if(valley==1) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
 
 } 
 //---------------------------------------------------------------------------//
@@ -69,7 +77,7 @@ int main(){
     //t=1;
     cin>>t;
     FOR(0,t) test();
-    int n;
+   
 
 }
  

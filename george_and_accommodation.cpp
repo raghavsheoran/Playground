@@ -47,20 +47,11 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
+int res=0;
 void test(){
-    int n;
-    cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
-    }
-    cout<<res<<endl;
+    int a,b;
+    cin>>a>>b;
+    if(abs(a-b)>=2) res++;
 
 } 
 //---------------------------------------------------------------------------//
@@ -69,7 +60,8 @@ int main(){
     //t=1;
     cin>>t;
     FOR(0,t) test();
-    int n;
+    cout<<res;
+    
 
 }
  

@@ -38,8 +38,8 @@ using namespace std;
 #define vpl vector<pl>
 #define vpd vector<pd>
 //---------------------------------------------------------------------------//
-#define FOR(a,b) for(int i=a; i<b; i++) // upper limit excludes
-#define ROF(a,b) for(int i=b; i>=0; i--) // both limits included
+#define FOR(i,a,b) for(int i=a; i<b; i++) // upper limit excludes
+#define ROF(i,a,b) for(int i=b; i>=0; i--) // both limits included
 //---------------------------------------------------------------------------//
 #define sz(x) int(size(x)) // typecated to int
 #define bg begin()
@@ -48,28 +48,27 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    int n;
-    cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
+    int n,m;
+    cin>>n>>m;
+    vector<ll> nums(n);
+    long long sum=0; // the sum of all the rooms of prev dorms
     for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+    long long index=0;
+    for(int i=0; i<m; i++){
+        long long room;
+        cin>>room;
+        room-=sum;
+        while(room>nums[index]){sum+=nums[index]; room-=nums[index]; index++;}
+        cout<<index+1<<" "<<room<<endl;
+
     }
-    cout<<res<<endl;
+
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    int t;
-    //t=1;
-    cin>>t;
-    FOR(0,t) test();
-    int n;
+    test();
+    
 
 }
  

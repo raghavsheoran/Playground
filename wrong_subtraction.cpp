@@ -48,28 +48,20 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    int n;
-    cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+    int a,b;
+    cin>>a>>b;
+    for(int i=0; i<b; i++){
+        if(a%10==0) a=a/10;
+        else a--;
     }
-    cout<<res<<endl;
+    cout<<a<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    int t;
-    //t=1;
-    cin>>t;
-    FOR(0,t) test();
-    int n;
+    
+    test();
+    
 
 }
  

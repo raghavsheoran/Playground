@@ -48,19 +48,11 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    int n;
-    cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
-    }
-    cout<<res<<endl;
+    string s;
+    cin>>s;
+    if(s[0]=='a' || s[1]=='b' || s[2]=='c') cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+    
 
 } 
 //---------------------------------------------------------------------------//

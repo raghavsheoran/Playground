@@ -50,17 +50,15 @@ using namespace std;
 void test(){
     int n;
     cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+    int res=INT_MAX;
+    vector<int> nums(n);
+    for(int i=0; i<n; i++){
+        cin>>nums[i];
     }
-    cout<<res<<endl;
+    for(int i=1; i<n; i++){
+        res=min(res,max(nums[i],nums[i-1]));
+    }
+    cout<<res-1<<endl;
 
 } 
 //---------------------------------------------------------------------------//

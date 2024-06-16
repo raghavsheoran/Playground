@@ -49,27 +49,32 @@ using namespace std;
 //---------------------------------------------------------------------------//
 void test(){
     int n;
-    cin>>n;
-    vector<long long> nums(n);
+    long long a,b;
+    cin>>n>>a>>b;
     long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
+    vector<long long> holes(n-1);
+    long long first;
     for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+        if(i==0){cin>>first; sum+=first;}
+        else{cin>>holes[i-1]; sum+=holes[i-1];}}
+    long long water=(first*a)/sum;
+    
+    sort(holes.begin(),holes.end());
+    int index=n-2; // index which should be bolcked
+    while(water<b){
+      sum-=holes[index];
+      index--;
+      water=(first*a)/sum;
     }
-    cout<<res<<endl;
+    cout<<n-2-index<<endl;
+
+    
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    int t;
-    //t=1;
-    cin>>t;
-    FOR(0,t) test();
-    int n;
+    test();
+   
 
 }
  

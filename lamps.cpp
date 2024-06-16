@@ -50,15 +50,19 @@ using namespace std;
 void test(){
     int n;
     cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+    map<int,priority_queue<int>> mp;
+    for(int i=0; i<n; i++){
+      int a,b;
+      cin>>a>>b;
+      mp[a].push(b);
+    }
+    long long res=0;
+    for(auto it=mp.begin(); it!=mp.end(); it++){
+        int a=it->first;
+        for(int i=0; i<a && it->second.empty()==false; i++){
+           res+=it->second.top();
+           it->second.pop();
+        }
     }
     cout<<res<<endl;
 
@@ -69,7 +73,6 @@ int main(){
     //t=1;
     cin>>t;
     FOR(0,t) test();
-    int n;
 
 }
  

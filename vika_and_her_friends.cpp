@@ -48,19 +48,19 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    int n;
-    cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+    int n,m,k;
+    cin>>n>>m>>k;
+    int x,y;
+    cin>>x>>y;
+    bool possible=true;
+    for(int i=0; i<k; i++){
+        int x1,y1;
+        cin>>x1>>y1;
+        if((abs(x1-x)+abs(y1-y))%2==0) possible=false;
     }
-    cout<<res<<endl;
+    if(possible) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+
 
 } 
 //---------------------------------------------------------------------------//

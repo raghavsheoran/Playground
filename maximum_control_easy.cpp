@@ -50,26 +50,23 @@ using namespace std;
 void test(){
     int n;
     cin>>n;
-    vector<long long> nums(n);
-    long long sum=0;
-    set<long long> st;
-    int res=0;
-    for(int i=0; i<n; i++) cin>>nums[i];
-    for(int i=0; i<n; i++) {
-        st.insert(nums[i]);
-        sum+=nums[i];
-        if(sum%2==0 && st.find(sum/2)!=st.end()) res++;
+    vector<vector<int>> nums(n+1);
+    for(int i=0; i<n-1; i++){
+        int a,b;
+        cin>>a>>b;
+        nums[a].push_back(b);
+        nums[b].push_back(a);
     }
-    cout<<res<<endl;
+    int res=0;
+    for(int i=1; i<=n; i++){
+        if(nums[i].size()==1) res++;
+    }
+    cout<<res;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    int t;
-    //t=1;
-    cin>>t;
-    FOR(0,t) test();
-    int n;
+    test();
 
 }
  
