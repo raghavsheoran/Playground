@@ -48,7 +48,22 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    ll n,a,b;
+    cin>>n>>a>>b; 
+    // total no of buns
+    // ususal price
+    // modified price
+    if(b<=a-1){
+      cout<<n*a<<endl; // as selling a b or less would not be good
+    }
+    else{ // k>1
+        ll k=b-a+1;
+        k=min(k,n);
+        ll profit=(k*(2*b-k+1))/2;
+        ll left=n-k;
+        profit+=left*a;
+        cout<<profit<<endl;
+    }
 
 } 
 //---------------------------------------------------------------------------//

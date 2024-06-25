@@ -48,7 +48,19 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    ll res=0;
+    for(int i=0; i<n; i++){
+        ll temp;
+        cin>>temp;
+        if(temp>res) res=temp;
+        else{
+           res+=(temp-res%temp);
+        }
+
+    }
+    cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//

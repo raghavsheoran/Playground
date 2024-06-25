@@ -48,7 +48,17 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    vector<int> nums(n);
+    ll res=1;
+    for(int i=0; i<n; i++){
+        cin>>nums[i];
+    }
+    sort(nums.begin(),nums.end());
+    nums[0]+=1;
+    FOR(i,0,n) res*=nums[i];
+    cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//

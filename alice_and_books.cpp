@@ -48,7 +48,20 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    long long a=LLONG_MIN,b;
+    for(int i=0; i<n; i++){
+        long long k;
+        cin>>k;
+        if(i!=n-1){
+            a=max(a,k);
+        }
+        else b=k;
+
+    }
+    cout<<a+b<<endl;
+
 
 } 
 //---------------------------------------------------------------------------//

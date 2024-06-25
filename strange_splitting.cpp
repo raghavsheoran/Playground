@@ -48,7 +48,23 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    vector<int> nums(n);
+    bool possible=false;
+    for(int i=0; i<n; i++) {cin>>nums[i];}
+    if(nums[0]!=nums[n-1]) possible=true;
+    if(!possible) cout<<"NO"<<endl;
+    else{
+        cout<<"YES"<<endl;
+        string res;
+        res+='R';
+        res+='B';
+        for(int i=2; i<n; i++) res+='R';
+        cout<<res;
+        cout<<endl;
+    }
+
 
 } 
 //---------------------------------------------------------------------------//

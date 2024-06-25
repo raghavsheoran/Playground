@@ -48,7 +48,13 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    string s;
+    cin>>s;
+    bool possible=true;
+    if(s[0]!='1' || s[s.length()-1]=='9') {possible=false;}
+    for(int i=1; i<s.length()-1; i++) {if(s[i]=='0') {possible=false; break;}}
+    if(!possible) cout<<"NO"<<endl;
+    else cout<<"YES"<<endl;
 
 } 
 //---------------------------------------------------------------------------//

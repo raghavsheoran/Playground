@@ -48,7 +48,23 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    ll min_val=0;
+    ll max_val=0;
+    for(int i=0; i<n; i++){
+        ll k;
+        cin>>k;
+        vector<ll> a;
+        a.push_back(k+min_val);
+        a.push_back(k+max_val);
+        a.push_back(abs(k+min_val));
+        a.push_back(abs(k+min_val));
+        sort(a.begin(),a.end());
+        min_val=a[0];
+        max_val=a[3];
+    }
+    cout<<max_val<<endl;
 
 } 
 //---------------------------------------------------------------------------//

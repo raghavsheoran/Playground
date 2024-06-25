@@ -48,7 +48,53 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+    int n;
+    cin>>n;
+    vector<int> original(n);
+    vector<int> final(n);
+    map<int,int> final_needed;
+    set<int> present;
+    for(int i=0; i<n; i++) cin>>original[i];
+    for(int i=0; i<n; i++) {cin>>final[i];
+    present.insert(final[i]); // everthing that ought is to be present
+    if(final[i]!=original[i]) final_needed[final[i]]++; // the needed and how much of it
+    }
+    int m;
+    cin>>m;
+    vector<int> operations(m);
     
+    for(int i=0; i<m; i++) {cin>>operations[i];
+    if(final_needed.find(operations[i])!=final_needed.end()){final_needed[operations[i]]--;
+    if(final_needed[operations[i]]==0) final_needed.erase(operations[i]);
+    }
+    }
+    int extra=0;
+    if(final_needed.size()!=0){
+      cout<<"NO"<<endl;
+    } 
+    
+    else{
+     bool possible=true;
+     for(int i=0; i<m; i++){
+      if(present.find(operations[i])!=present.end()){
+        if(extra>0) extra--;
+      }
+      else{
+        extra=1;
+      }
+     }
+     if(extra==0) cout<<"YES"<<endl;
+     else cout<<"NO"<<endl;
+    }
+    
+
+
+
+
+
+   
+
+
 
 } 
 //---------------------------------------------------------------------------//

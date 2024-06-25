@@ -48,13 +48,22 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    bool hard=false;
+    for(int i=0; i<n; i++){
+        int k;
+        cin>>k;
+        if(k==1) hard=true;
+    }
+    if(hard) cout<<"HARD";
+    else cout<<"EASY";
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
     int t;
-    cin>>t; // For single test case remove this one
+    t=1; // For single test case remove this one
     //t=1; // And use this one
     FOR(i,0,t) test();
     

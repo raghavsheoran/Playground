@@ -48,7 +48,35 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    ll n,k;
+    cin>>n>>k;
+    if(k%2!=0) cout<<"NO"<<endl;
+    else{
+    vector<int> nums(n+1);
+    ll max_sum=0;
+    FOR(i,1,n+1) {nums[i]=i; max_sum+=abs(i-(n-i+1));} // 1 to n both included
+    if(k>max_sum) cout<<"NO"<<endl;
+    else{ll rem=n;
+    ll add=(rem-1)*2;
+    ll req=k;
+    int l=1,r=n;
+    while(add<=req && l<r){
+        req-=add; // substract it
+        rem-=2;
+        add=(rem-1)*2;
+        swap(nums[l],nums[r]);
+        l++; r--;
+    }
+    req=req/2;
+    int n_r=l+req;
+    swap(nums[l],nums[n_r]);
+    cout<<"YES"<<endl;
+    FOR(i,1,n+1) cout<<nums[i]<<" ";
+    cout<<endl;
+    }
+    }
+
+
 
 } 
 //---------------------------------------------------------------------------//

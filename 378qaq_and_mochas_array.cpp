@@ -48,7 +48,25 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    vector<int> nums(n);
+    int a=INT_MAX;
+    int b=INT_MAX;
+    for(int i=0; i<n; i++){
+        cin>>nums[i];
+        a=min(a,nums[i]);
+    }
+    set<int> st;
+    for(int i=0; i<n; i++){
+        if(nums[i]%a!=0) {st.insert(nums[i]); b=min(b,nums[i]);}
+    }
+    bool possible=true;
+    for(auto it=st.begin(); it!=st.end(); it++){
+        if(*it%b!=0){possible=false; break;}
+    }
+    if(possible) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
 
 } 
 //---------------------------------------------------------------------------//

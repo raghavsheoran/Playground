@@ -48,7 +48,21 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    ll n,x,y;
+    cin>>n>>x>>y;
+    long long res=0;
+    vector<int> nums(n);
+    map<pair<ll,ll>,ll> mp;
+    for(int i=0; i<n; i++) {
+        cin>>nums[i];
+        if(nums[i]%x==0){
+            if(mp.find({0,nums[i]%y})!=mp.end()) res+=mp[{0,nums[i]%y}];
+        }
+        else if(mp.find({x-(nums[i]%x),nums[i]%y})!=mp.end()) res+=mp[{x-(nums[i]%x),nums[i]%y}];
+        mp[{nums[i]%x,nums[i]%y}]++;
+    }
+    cout<<res<<endl;
+
 
 } 
 //---------------------------------------------------------------------------//

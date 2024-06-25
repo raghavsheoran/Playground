@@ -48,6 +48,30 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+    int n,k;
+    cin>>n>>k;
+    vector<int> nums(n);
+    multiset<int> left; // elements on left
+    multiset<int> right; // elements on right
+    
+    for(int i=0; i<n; i++) {cin>>nums[i]; right.insert(nums[i]);
+    }
+    vector<int> res(n);
+    for(int i=0; i<n; i++){
+        right.erase(right.find(nums[i])); // erased from right
+        int r=distance(right.lower_bound(nums[i]), right.end()); // number of element greater than equal to nums[i] on right
+        int l=0; // total numbers to be deleted from left
+        int sum=k;
+        
+        res[i]=l+r;
+
+
+        left.insert(nums[i]); // added to left
+        
+    }
+    for(int i=0; i<n; i++) cout<<res[i]<<" ";
+    cout<<endl;
+
     
 
 } 

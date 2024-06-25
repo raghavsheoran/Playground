@@ -48,8 +48,12 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+    string s;
+    cin>>s;
+    string a=s.substr(0,1);
+    string b=s.substr(2,1);
+    cout<<stoi(a)+stoi(b)<<endl;
     
-
 } 
 //---------------------------------------------------------------------------//
 int main(){
