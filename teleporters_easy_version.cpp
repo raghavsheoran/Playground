@@ -48,13 +48,25 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+   int n,c;
+   cin>>n>>c;
+   priority_queue <int,vector<int>, greater<int>> pq;
+   for(int i=0; i<n; i++) {
+    int temp;
+    cin>>temp;
+    pq.push(i+1+temp);
+   }
+   int res=0;
+   while(pq.empty()==false && pq.top()<=c){
+    res++;
+    c-=pq.top();
+    pq.pop();
+    }
+    cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

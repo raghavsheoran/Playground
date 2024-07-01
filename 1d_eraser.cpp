@@ -48,13 +48,20 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+    int n,k;
+    cin>>n>>k;
+    string s;
+    cin>>s;
+    int res=0;
+    for(int i=0; i<n; i++){
+        if(s[i]=='B'){res++; i+=k-1;}
+    }
     
+    cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

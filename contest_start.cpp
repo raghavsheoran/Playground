@@ -48,13 +48,27 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+    ll n,x,t; 
+    // n-> no of participants
+    // x->start duration
+    // t->contest duration
+    cin>>n>>x>>t;
+    ll num_start=t/x; // number of contestant who started before the finish of first
+    num_start=min(num_start,n);
+    ll valid=n-num_start; // the number of participants which will end with num_start dissatisfaction
     
+    ll res=num_start*valid;
+    ll left=n-valid; // which are left with 0 to left-1 dissatisfaction
+    ll add=0;
+    if(left%2==0) add=(left/2)*(left-1);
+    else add=((left-1)/2)*left;
+    res+=add;
+    cout<<res<<endl;
+
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

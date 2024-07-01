@@ -48,13 +48,33 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    string d;
+    string c;
+    int i=0;
+    while(i<n && s[i]>='0' && s[i]<='9') i++;
+    d=s.substr(0,i); // only digit part
+    c=s.substr(i,n-i);
     
+    bool possible=true;
+    for(int i=0; i<c.length(); i++){
+        if(c[i]>='0' && c[i]<='9') possible=false; // digit part in the character part;
+    }
+    string d_test=d;
+    string c_test=c;
+    sort(d.begin(),d.end());
+    sort(c.begin(),c.end());
+    if(c!=c_test || d!=d_test) possible=false;
+    if(possible) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

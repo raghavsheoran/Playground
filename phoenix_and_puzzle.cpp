@@ -48,13 +48,19 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+   int n;
+   cin>>n;
+   int a=n/2, b=n/4;
+   if(n%2==0 && a>0 && int(sqrt(a))*int(sqrt(a))==a) cout<<"YES";
+   else if(n%4==0 && b>0 && int(sqrt(b))*int(sqrt(b))==b) cout<<"YES";
+   else cout<<"NO";
+   cout<<endl;
+   
+   
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

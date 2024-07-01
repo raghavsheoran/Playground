@@ -48,13 +48,24 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+  string s;
+  cin>>s;
+  int k=-1;
+  for(int i=1; i<s.length(); i++){
+     if(s[i]=='1' && s[i-1]=='1')  {k=i; break;}
+  } 
+  bool possible=true;
+  if(k!=-1){
+    for(int i=k; i<s.length()-1; i++){
+     if(s[i]=='0' && s[i+1]=='0'){possible=false; break;}
+    }
+  }
+  if(possible) cout<<"YES"<<endl;
+  else cout<<"NO"<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

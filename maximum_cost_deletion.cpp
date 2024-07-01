@@ -48,13 +48,37 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+   int n,a,b;
+   cin>>n>>a>>b;
+   string s;
+   cin>>s;
+   if(a>=0 && b>=0) cout<<n*a+n*b<<endl;
+   else if(a<=0 && b>=0) cout<<n*a+n*b<<endl;
+   else {
+    int cnt_z=0;
+    int curr_z=0;
+    int cnt_o=0;
+    int curr_o=0;
+    for(int i=0; i<n; i++){
+        if(s[i]=='0'){
+            curr_o=0;
+            if(curr_z==0) {curr_z=1; cnt_z++;}
+            else curr_z++;
+        }
+        else {
+            curr_z=0;
+            if(curr_o==0) {curr_o=1; cnt_o++;}
+            else curr_o++;
+        }
+    }
     
+    
+    cout<<n*a+(min(cnt_o,cnt_z)+1)*b<<endl;}
+
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

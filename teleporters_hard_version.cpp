@@ -48,13 +48,44 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
+    int n,c;
+    cin>>n>>c;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq_0;
+    for(int i=1; i<=n; i++){
+        int temp;
+        cin>>temp;
+        pq.push({temp+i,i});
+        pq_0.push({temp+i,i});
+        pq.push({temp+n+1-i,i});
+    }
+    int res=0;
+    if(pq_0.top().first>c){cout<<0<<endl;} // cant start from the left end
+    else{
+    res++;
+    unordered_set<int> st;
+    st.insert(pq_0.top().second);
+    c-=pq_0.top().first;
+    while(pq.empty()==false){ // should not be empty
+    while(pq.empty()==false && st.find(pq.top().second)!=st.end()) pq.pop(); // should not be previosly removed
+    if(pq.empty()==false){
+        if(pq.top().first<=c){
+            c-=pq.top().first;
+            res++;
+            st.insert(pq.top().second);
+            pq.pop();
+        }
+        else break;
+    }
+    else break;
+       
+    }
     
+    cout<<res<<endl;}
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

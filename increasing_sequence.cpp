@@ -48,13 +48,27 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    vector<int> nums(n);
+    for(int i=0; i<n; i++) cin>>nums[i];
+    vector<int> res(n);
+    int k=0;
+    for(int i=0; i<n; i++){
+        k++; // what should be there
+      if(k!=nums[i]) res[i]=k;
+      else{
+        res[i]=nums[i]+1;
+        k=res[i];
+      }
+
+    }
+    cout<<res[res.size()-1];
+    cout<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

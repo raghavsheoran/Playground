@@ -47,14 +47,29 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
+vector<int> dp;
+int min_coin(int n){
+    if(n==0) return 0;
+    if(n<0) return -1;
+    if(dp[n]!=-1) return dp[n];
+    int a=INT_MAX,b=INT_MAX,c=INT_MAX,d=INT_MAX,e=INT_MAX;
+    if(min_coin(n-15)!=-1) a=1+min_coin(n-15);
+    if(min_coin(n-10)!=-1) b=1+min_coin(n-10);
+    if(min_coin(n-6)!=-1) c=1+min_coin(n-6);
+    if(min_coin(n-3)!=-1) d=1+min_coin(n-3);
+    if(min_coin(n-1)!=-1) e=1+min_coin(n-1);
+    dp[n]= min(a,min(b,min(c,min(d,e))));
+    return dp[n];
+}
 void test(){
-    
+    int n;
+    cin>>n;
+    dp.resize(n+1,-1);
+    cout<<min_coin(n)<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

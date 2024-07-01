@@ -48,13 +48,49 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
-
+    string s;
+    cin>>s;
+    vector<pair<char,int>> small;
+    vector<pair<char,int>> capital;
+    for(int i=0; i<s.length(); i++){
+        if(s[i]=='B'){
+            if(capital.size()>0) capital.pop_back();
+        }
+        else if(s[i]=='b'){
+            if(small.size()>0) small.pop_back();
+        }
+        else{
+            if(s[i]>='a' && s[i]<='z') small.push_back({s[i],i});
+            else capital.push_back({s[i],i});
+        }
+    }
+    string res;
+    int i=0;
+    int j=0;
+    while(i<small.size() || j<capital.size()){
+        if(i==small.size()){
+            res+=capital[j].first;
+            j++;
+        }
+        else if(j==capital.size()){
+            res+=small[i].first;
+            i++;
+        }
+        else{
+            if(capital[j].second>small[i].second) {
+            res+=small[i].first;
+            i++;
+        }
+        else{
+            res+=capital[j].first;
+            j++;
+        }
+        }
+    }
+cout<<res<<endl;
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

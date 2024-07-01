@@ -48,13 +48,26 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    vector<pair<int,int>> shot;
+    int res=0;
+    vector<vector<char>> vec(10,vector<char>(10));
+    for(int i=0; i<10; i++){
+        for(int j=0; j<10; j++) {
+            cin>>vec[i][j];
+            if(vec[i][j]=='X') {
+                int a=i+1,b=j+1;
+                shot.push_back({i,j});
+                if(i>=5) a=10-i;
+                if(j>=5) b=10-j;
+                res+=min(a,b);
+                }
+        }
+    }
+    cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

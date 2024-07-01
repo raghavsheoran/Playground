@@ -48,13 +48,58 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+  int n;
+  cin>>n;
+  int k=1;
+  vector<vector<int>> mat(n,vector<int>(n));
+  if(n==1) cout<<1<<endl;
+  else if(n==2) cout<<-1<<endl;
+  else{ 
+    int row=0;
+    for(int i=row; i<n; i+=2){ // the starting row
+    if(i==n-1) break; // odd
+    bool up=true;
+    for(int j=0; j<n; j++){
+     if(up) mat[i][j]=k;
+     else mat[i+1][j]=k;
+     k++;
+     up=!up;
+    }
+    up=false;
+    for(int j=0; j<n; j++){
+     if(up) mat[i][j]=k;
+     else mat[i+1][j]=k;
+     k++;
+     up=!up;
+    }
+    }
+    if(n%2!=0){
+    int l=0;
+    int h=n-1;
+    while(l<h){
+        mat[n-1][l]=k;
+        k++;
+        l++;
+        mat[n-1][h]=k;
+        k++;
+        h--;
+
+    }
+    mat[n-1][l]=k;
+    swap(mat[n-1][l],mat[0][l]);
+  }
+
+  for(int i=0; i<n; i++){
+    for(int j=0; j<n; j++) cout<<mat[i][j]<<" ";
+   cout<<endl;
+  }
+  
+  }
+  
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

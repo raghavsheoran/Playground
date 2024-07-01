@@ -48,13 +48,23 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    ll a,b;
+    cin>>a>>b;
+    if(b==1) cout<<"NO"<<endl;
+    else if(b==2){
+        if(a%2==0) {cout<<"YES"<<endl;
+        cout<<a<<" "<<3*a<<" "<<4*a<<endl;}
+        else {cout<<"YES"<<endl;
+        cout<<a<<" "<<2*a<<" "<<3*a<<endl;}
+    }
+    else{
+        cout<<"YES"<<endl;
+        cout<<a*(1)<<" "<<a*(b-1)<<" "<<a*b<<endl;
+    }
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

@@ -48,13 +48,24 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+   int n;
+   cin>>n;
+   string s;
+   cin>>s;
+   int z=0,o=0;
+   bool diff=false;
+   for(int i=0; i<n; i++){
+    if(s[i]=='0') z++;
+    else o++;
+    if(i!=n-1 && s[i]!=s[i+1]) diff=true;
+   }
+   if(z>o || diff) cout<<"YES"<<endl;
+   else cout<<"NO"<<endl;
+
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

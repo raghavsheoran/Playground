@@ -48,13 +48,26 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    int neg=0;
+    vector<int> nums(n);
+    int min_val=INT_MAX;
+    ll sum=0;
+    for(int i=0; i<n; i++) {
+    cin>>nums[i]; 
+    if(nums[i]<0) neg++; 
+    min_val=min(min_val,abs(nums[i]));
+    sum+=abs(nums[i]);
+    }
+    if(neg%2==0) cout<<sum<<endl;
+    else{
+       cout<<sum-2*min_val<<endl;
+    }
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

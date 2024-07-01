@@ -60,6 +60,7 @@ void test(){
         string res;
         res+='R';
         res+='B';
+
         for(int i=2; i<n; i++) res+='R';
         cout<<res;
         cout<<endl;

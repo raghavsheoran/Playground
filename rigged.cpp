@@ -48,13 +48,25 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    vector<pair<int,int>> vec(n);
+    bool possible=true;
+    for(int i=0; i<n; i++){
+        cin>>vec[i].first;
+        cin>>vec[i].second;
+        if(i!=0){
+            if(vec[i].first>=vec[0].first){
+                if(vec[i].second>=vec[0].second) possible=false;
+            }
+        }
+    }
+    if(!possible) cout<<-1<<endl;
+    else cout<<vec[0].first<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

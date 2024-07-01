@@ -48,13 +48,29 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    string s;
+    string t;
+    cin>>s;
+    cin>>t;
+    unordered_set<string> st;
+    for(int i=0; i<s.length(); i++){
+        for(int j=0; j<s.length(); j++){
+            st.insert(s.substr(i,j-i+1));
+        }
+    }
+    int res=0;
+    for(int i=0; i<t.length(); i++){
+        for(int j=0; j<t.length(); j++){
+            if(st.find(t.substr(i,j-i+1))!=st.end()){
+                res=max(res,j-i+1);
+            }
+        }
+    }
+    cout<<s.length()-res+t.length()-res<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

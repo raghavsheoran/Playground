@@ -48,13 +48,29 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    
+    int n,k;
+    cin>>n>>k;
+    map<int,vector<int>> mp;
+    for(int i=0; i<n; i++){
+        int temp;
+        cin>>temp;
+        if(temp%k==0) mp[k].push_back(i+1);
+        else mp[temp%k].push_back(i+1);
+    }
+    vector<int> res;
+    for(auto it=mp.begin(); it!=mp.end(); it++){
+        vector<int> a=it->second;
+        sort(a.begin(),a.end());
+        reverse(a.begin(),a.end());
+        for(int i=0; i<a.size(); i++) res.push_back(a[i]);
+    }
+    reverse(res.begin(),res.end());
+    for(int i=0; i<n; i++) cout<<res[i]<<" ";
+    cout<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one
