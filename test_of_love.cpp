@@ -47,16 +47,48 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
+    int n,m,k;
+    cin>>n>>m>>k;
+    string s="L";
+    string temp;
+    cin>>temp;
+    s+=temp;
+    s+="L";
     
+    bool possible=true;
+    int i;
+    for(i=0; i<s.length(); i++){
+      if(s[i]=='L'){ // log present
+        while(i+1<s.length() && s[i+1]=='L') i++; // we now came to the last log
+        int ref=i; // last log
+        int pos=i+m; // if I might jump all
+        for(int j=i+1; j<=pos && j<s.length(); j++){
+            if(s[j]=='L') i=j; // we go to the next area where there is a log
+        }
+        if(i==ref){ // hasnt moved
+         for(int j=i+1; j<=pos && j<s.length(); j++){
+            if(s[j]=='W') i=j; // we go to the next area where there is a log
+        }
+        if(i==ref && i!=s.length()-1) {possible=false; break;   }
+        }
+
+        }
+        if(s[i]=='W'){
+        // we will have to swim
+        if(k==0) {possible=false; break;}
+        else k--;
+        
+      }
+       else if(s[i]=='C') {possible=false; break;} // we encoundered a crocodile
+
+      
+      if(i==s.length()-1) break;
+      
+    }
+    
+    if(possible) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
 
 } 
 //---------------------------------------------------------------------------//

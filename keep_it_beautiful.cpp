@@ -47,17 +47,56 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    vector<int> nums(n);
+    for(int i=0; i<n; i++) cin>>nums[i];
+    string res;
+    int prev=-1; // prev index of number added
+    int rule_break=0; // number of rules broken
+    for(int i=0; i<n; i++){ // tranversing
+        if(prev==-1){ // first number to be added
+            res+='1';
+            prev=i; // the number has been added
+        }
+        else{ // second to last
+            if(nums[i]>=nums[prev]){ // add this number since the array will be non dedcreasing
+            if(rule_break==0){
+            res+='1';
+            prev=i;
+            }
+            else{
+             // first rule break done
+            if(nums[i]<=nums[0]){
+                res+='1';
+                prev=i;
+                }
+                else{
+                    res+='0';
+                }
+            }
+            }
+            else{ // it is smaller than the previos number added
+            if(rule_break==0){
+                if(nums[i]<=nums[0]){
+                rule_break+=1;
+                res+='1';
+                prev=i;
+                }
+                else{
+                    res+='0';
+                }
+            }
+            else{ // not allowed
+                res+='0';
+            }
 
+            }
+
+        }
+    }
+    cout<<res<<endl;
 } 
 //---------------------------------------------------------------------------//
 int main(){

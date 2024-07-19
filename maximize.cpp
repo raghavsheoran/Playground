@@ -1,11 +1,9 @@
 #include<iostream>
 using namespace std;
 #include<algorithm>
-int gcd(int a, int b){
-    if(a==0) return b;
-    if(b==0) return a;
-    if(a>b) return gcd(a-b,b);
-    else return gcd(a,b-a);
+int gcd(int x, int y){
+    if(y==0) return x;
+    return gcd(y,x%y);
 }
 int main(){
     int t;
@@ -15,7 +13,7 @@ int main(){
         cin>>x;
         int res=0;
         int ans;
-        for(int i=0; i<x; i++){
+        for(int i=1; i<x; i++){
             if(i+gcd(i,x)>res) {ans=i; res=i+gcd(i,x);}
         }
         cout<<ans<<endl;

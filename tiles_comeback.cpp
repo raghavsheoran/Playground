@@ -47,16 +47,42 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
-    
+    int n,k;
+    cin>>n>>k;
+    vector<int> nums(n);
+    for(int i=0; i<n; i++){
+        cin>>nums[i];
+    }
+    if(nums[0]==nums[n-1]){ // same tile colour for the first and last tile
+    int count=0;
+    for(int i=0; i<n; i++) if(nums[i]==nums[0])count++;
+    if(count>=k) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
+    }
+    else{
+        int first=0;
+        int first_index;
+        for(int i=0; i<n; i++){
+            if(nums[i]==nums[0]){
+                first++;
+                if(first==k) first_index=i;
+            }
+        }
+        int last=0;
+        int last_index;
+        for(int i=n-1; i>=0; i--){
+            if(nums[i]==nums[n-1]){
+                last++;
+                if(last==k) last_index=i;
+            }
+        }
+        if(first<k || last<k) cout<<"NO"<<endl;
+        else{
+            if(first_index<last_index) cout<<"YES"<<endl;
+            else cout<<"NO"<<endl;
+        }
+    }
 
 } 
 //---------------------------------------------------------------------------//

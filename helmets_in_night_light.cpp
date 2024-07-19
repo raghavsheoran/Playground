@@ -47,16 +47,28 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
-    
+   ll n,p;
+   cin>>n>>p;
+   vector<ll> transmit(n);
+   vector<ll> cost(n);
+   ll res=p;
+   ll notified=1;
+   priority_queue<pair<ll,ll>,vector<pair<ll,ll>>,greater<pair<ll,ll>>> pq; // cost, transmit
+   for(int i=0; i<n; i++) cin>>transmit[i];
+   for(int i=0; i<n; i++) cin>>cost[i]; 
+   for(int i=0; i<n; i++) pq.push({cost[i],transmit[i]});
+   while(pq.empty()==false && pq.top().first<p){ // if greater than p, pak will notify
+   ll t=pq.top().second;
+   ll c=pq.top().first;
+   pq.pop();
+   res+=(min(t,n-notified)*c);
+   notified=min(n,notified+t);
+   }
+   if(notified<n){
+    res+=(n-notified)*p;
+   }
+   cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//

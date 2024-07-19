@@ -47,22 +47,38 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
+    int n,k,x;
+    cin>>n>>k>>x;
+    vector<int> nums(n);
+    int sum=0;
+    for(int i=0; i<n; i++){
+       
+        cin>>nums[i];
+        sum+=nums[i];
+    }
+    sort(nums.begin(),nums.end());
+    int to_remove=n-1;
+    int removed=0;
+   
+    for(int i=max(0,n-x); i<n; i++) sum-=2*nums[i]; // k elements substracted
     
+    int res=sum;
+    int sub=n-x-1;
+    while(removed<k && to_remove>=0){
+     sum+=nums[to_remove];
+     if(sub>=0) sum-=2*nums[sub];
+     
+     res=max(res,sum);
+     sub--;
+     removed++;
+     to_remove--;
+    }
+    cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

@@ -47,22 +47,49 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
+bool is_prime(char c){
+        return (c=='2' || (c=='3' || (c=='5' || c=='7')));
+    }
 
-//---------------------------------------------------------------------------//
+
 void test(){
-    
+    int n;
+    cin>>n;
+    string s;
+    cin>>s;
+    int pos=-1;
+    for(int i=0; i<n; i++){
+        if(s[i]=='1' || !is_prime(s[i])){pos=i; break;}
+    }
+    if(pos!=-1){
+        cout<<1<<endl;
+        cout<<s[pos]<<endl;
+    }
+    else{ // all 2,3,5,7
+    unordered_map<char,int> mp;
+    bool two=false;
+    for(int i=0; i<n; i++) {mp[s[i]]++; if(mp[s[i]]==2) {two=true; break;}}
+    if(two){
+        cout<<2<<endl;
+        for(auto it=mp.begin(); it!=mp.end(); it++){
+            if(it->second==2){cout<<it->first<<it->first<<endl;}
+        }
+    }
+    else{
+        cout<<2<<endl;
+        cout<<s[0];
+        for(int i=1; i<n; i++){
+            if(s[0]=='2' && s[i]!='3'){cout<<s[i]<<endl; break;}
+            if(s[0]=='3' && s[i]!='7'){cout<<s[i]<<endl; break;}
+            if(s[0]=='5' && s[i]!='3'){cout<<s[i]<<endl; break;}
+            if(s[0]=='7' && s[i]!='3'){cout<<s[i]<<endl; break;}
+        }
+    }
+    }
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

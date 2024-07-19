@@ -47,16 +47,29 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
+    int n,k;
+    cin>>n>>k;
+    int rem=n-k;
+    int even=rem/2;
+    string s;
+    cin>>s;
+    bool possible=false;
+    unordered_map<char,int> mp;
+    for(int i=0; i<n ; i++) {
+        mp[s[i]]++;
+        if(mp[s[i]]==2 && even>0){
+            even--;
+            mp[s[i]]=0;
+        }
+    } // frequency
+    if(even==0) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;
     
+   
+    
+
+
 
 } 
 //---------------------------------------------------------------------------//

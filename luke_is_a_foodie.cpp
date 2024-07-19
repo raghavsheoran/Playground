@@ -47,22 +47,39 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
+bool overlap(int a, int b, int c, int d){
+    if(b<c || d<a) return false;
+    else return true;
 }
-
-//---------------------------------------------------------------------------//
 void test(){
-    
+    int n,k;
+    cin>>n>>k;
+    vector<pair<int,int>> nums(n);
+    for(int i=0; i<n; i++){
+        int temp;
+        cin>>temp;
+        nums[i].first=temp-k;
+        nums[i].second=temp+k;
+    }
+    int min_val=INT_MIN;
+    int max_val=INT_MAX;
+    int res=1;
+    for(int i=0; i<n; i++){
+        if(overlap(nums[i].first, nums[i].second, min_val, max_val)){
+            min_val=max(min_val,nums[i].first);
+            max_val=min(max_val,nums[i].second);
+        }
+        else {
+            res++;
+            min_val=nums[i].first;
+            max_val=nums[i].second;
+        }
+    }
+    cout<<res-1<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

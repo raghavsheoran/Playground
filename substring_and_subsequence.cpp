@@ -47,22 +47,22 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
-    
-
+    string a,b;
+    cin>>a; // substring
+    cin>>b; // subsequence
+    int match=0;
+    for(int i=0; i<b.length(); i++){ // this is the starting point in b to match
+    int s=i;
+    for(int j=0; j<a.length(); j++){
+        if(a[j]==b[s]) s++;
+    }
+    match=max(match,s-i);
+    }
+    cout<<a.length()+b.length()-match<<endl;
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one

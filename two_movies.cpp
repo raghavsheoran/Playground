@@ -47,16 +47,40 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
-    
+   int n;
+   cin>>n;
+   vector<int> first(n);
+   vector<int> second(n);
+   int a=0,b=0; // score of movie a // score of movie b
+   int x=0,y=0; // both positive // both negative
+   for(int i=0; i<n; i++){
+    cin>>first[i];
+   }
+   for(int i=0; i<n; i++){
+    cin>>second[i];
+   }
+   for(int i=0; i<n; i++){
+    if((first[i]==-1 && second[i]==-1) || (first[i]==1 && second[i]==1)){ // indecisive
+        if(first[i]==1) x++;
+        else y++;
+
+    }
+    else{
+        if(first[i]==1) a+=1;
+        else if(second[i]==1) b+=1;
+        // else no change
+    }
+   }
+   
+   int res=INT_MIN;
+   // range of value 
+   // max -> +x
+   // min -> -y
+   for(int i=-1*y; i<=x; i++){
+        res=max(res,min(a+i,b+(x-y)-i));
+   }
+   cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//

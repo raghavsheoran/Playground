@@ -47,16 +47,52 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
-    
+    int n,k;
+    cin>>n>>k;
+    vector<int> nums(n);
+    int even=0;
+    for(int i=0; i<n; i++) {cin>>nums[i]; if(nums[i]%2==0) even++;}
+    if(k==2 || k==4){
+        if(k==2){
+            if(even>=1) cout<<0;
+            else cout<<1;
+        }
+        else{
+            int res;
+            if(even>=2) res=0;
+            else if(even==1) res=1;
+            else res=2;
+            for(int i=0; i<n; i++){
+            if(nums[i]%4==3){res=min(res,1);}
+            if(nums[i]%4==2){res=min(res,2);}
+            if(nums[i]%4==1){res=min(res,3);}
+            if(nums[i]%4==0){res=min(res,0);}
+            }
+            cout<<res;
+            
+        }
+    }
+    else if(k==3){
+        int res=2;
+        for(int i=0; i<n; i++){
+            if(nums[i]%3==2){res=min(res,1);}
+            if(nums[i]%3==0){res=min(res,0);}
+            if(nums[i]%3==1){res=min(res,2);}
+        }
+        cout<<res;
+    }
+    else{
+        int res=4;
+        for(int i=0; i<n; i++){
+            if(nums[i]%5==4) {res=min(res,1);}
+            if(nums[i]%5==3){res=min(res,2); }
+            if(nums[i]%5==2){res=min(res,3); }
+            if(nums[i]%5==0) {res=min(res,0);}
+        }
+        cout<<res;
+    }
+    cout<<endl;
 
 } 
 //---------------------------------------------------------------------------//

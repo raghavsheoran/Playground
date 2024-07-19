@@ -47,16 +47,30 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
-    
+    int n;
+    cin>>n;
+    map<int,int> mp;
+    vector<int> nums(n);
+    vector<bool> is_first(n,false);
+    for(int i=0; i<n; i++){
+        int temp;
+        cin>>temp;
+        nums[i]=temp;
+        if(mp.find(temp)==mp.end()){
+            is_first[i]=true;
+        }
+        mp[temp]++;
+    }
+    ll res=0;
+    for(int i=0; i<n; i++){
+        if(is_first[i]){
+            res+=(mp.size());
+        }
+        mp[nums[i]]--;
+        if(mp[nums[i]]==0) mp.erase(nums[i]);
+    }
+    cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//

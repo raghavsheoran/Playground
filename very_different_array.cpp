@@ -47,22 +47,38 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-int xor_consecutive(int a){ // xor of all the elements from 0 to a [both inclusive]
-    if((a)%4==0) return a;
-    else if((a)%4==1) return 1;
-    else if((a)%4==2) return a+1;
-    else return 0;
-}
-
-//---------------------------------------------------------------------------//
 void test(){
+    int n,k;
+    cin>>n>>k;
+    vector<ll> nums(n);
+    vector<ll> f(k);
     
+    for(int i=0; i<n; i++) cin>>nums[i];
+    for(int i=0; i<k; i++) cin>> f[i];
+    sort(nums.begin(),nums.end());
+    sort(f.begin(),f.end());
+    int a=0;
+    int b=n-1;
+    int aa=0;
+    int bb=k-1;
+    ll res=0;
+    while(a<=b){
+        ll ff=abs(nums[a]-f[aa]);
+        ll fb=abs(nums[a]-f[bb]);
+        ll bbc=abs(nums[b]-f[bb]);
+        ll bf=abs(nums[b]-f[aa]);
+        res+=max(ff,max(fb,max(bbc,bf)));
+        if(max(ff,max(fb,max(bbc,bf)))==ff) {aa++; a++;}
+        else if(max(ff,max(fb,max(bbc,bf)))==fb) {a++; bb--;}
+        else if(max(ff,max(fb,max(bbc,bf)))==bbc) {b--; bb--;}
+        else if(max(ff,max(fb,max(bbc,bf)))==bf) {b--; aa++;}
+    }
+
+    cout<<res<<endl;
 
 } 
 //---------------------------------------------------------------------------//
 int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one
