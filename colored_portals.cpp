@@ -47,52 +47,67 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
+bool has_common(string & a,string & b){
+    return a[0]==b[0] || a[0]==b[1] || a[1]==b[0] || a[1]==b[1];
+}
+
 void test(){
-    int n,m,k;
-    cin>>n>>m>>k; // n mtrs // m mtr max jump // at max k mtr in water
-    string s="L";
-    string temp;
-    cin>>temp;
-    s+=temp;
-    s+="L"; // added log at begin and end
-    
-    int curr=0; // the current position // at log
-    bool possible=true;
-    while(curr<=n){ 
-      // either it is a log 
-      if(s[curr]=='L'){
-         // can go to curr+k
-         int temp=min(curr+m,n+1);
-         while(s[temp]!='L') temp--; // will find the last log
-         if(temp==curr){ // no logs in curr+1 to curr+k
-          temp=min(curr+m,n+1);
-          while(s[temp]!='W' && temp>curr) temp--;
-          }
-           // not even water present
-          if(temp==curr){possible=false; break;}
-         
-         // hence now I am either at a log or water
-          curr=temp;
-          if(curr==n+1){break;} // reached last 
-        
-      }
-      
-      // or it is water
-      // or it is croc
-      while(s[curr]=='W'){
-          if(k<=0) {possible=false; break;}
-          else { k--; curr++;}
-          if(curr==n+1){break;} 
-         }
-      if(!possible) break;
-        
-      if(s[curr]=='C'){
-          possible=false; break;
-         }
-         
+  int n,q;
+  cin>>n>>q;
+  vector<string> city(n);
+  for(int i=0; i<n; i++) cin>>city[i];
+  unordered_map<string,int> mp;
+  vector<string> ref = {"GR","BR","RY","BG","GY","BY"};
+  for(int i=0; i<ref.size(); i++){
+    sort(ref[i].begin(),ref[i].end());
+    mp[ref[i]]=-1;
+  }
+  vector<vector<int>> nums_left(6,vector<int> (n,-1));
+  vector<vector<int>> nums_right(6,vector<int> (n,-1));
+  
+  for(int i=0; i<n; i++){
+    sort(city[i].begin(),city[i].end());
+    mp[city[i]]=i;
+    nums_left[0][i]=mp["GR"];
+    nums_left[1][i]=mp["BR"];
+    nums_left[2][i]=mp["RY"];
+    nums_left[3][i]=mp["BG"];
+    nums_left[4][i]=mp["GY"];
+    nums_left[5][i]=mp["BY"];
+  }
+  for(int i=n-1; i>=0; i--){
+    sort(city[i].begin(),city[i].end());
+    mp[city[i]]=i;
+    nums_right[0][i]=mp["GR"];
+    nums_right[1][i]=mp["BR"];
+    nums_right[2][i]=mp["RY"];
+    nums_right[3][i]=mp["BG"];
+    nums_right[4][i]=mp["GY"];
+    nums_right[5][i]=mp["BY"];
+  }
+
+  for(int i=0; i<q; i++){
+    ll a,b;
+    cin>>a>>b;
+    a--;
+    b--;
+    if(has_common(city[a],city[b])){cout<<abs(a-b)<<endl;}
+    else{
+        ll res=LLONG_MAX;
+        for(int i=0; i<6; i++){
+            if(ref[i]!=city[a] && ref[i]!=city[b]){
+                ll left=nums_left[i][a];
+                ll right=nums_right[i][a];
+                if(nums_left[i][a]!=-1) res=(abs(left-a)+abs(left-b));
+                if(nums_right[i][a]!=-1) res=min(res,(abs(right-a)+abs(right-b)));
+            }
+        }
+        if(res!=LLONG_MAX) cout<<res<<endl;
+        else cout<<-1<<endl;
     }
-    if(possible) cout<<"YES"<<endl;
-    else cout<<"NO"<<endl;
+
+  }
+
 
 } 
 //---------------------------------------------------------------------------//

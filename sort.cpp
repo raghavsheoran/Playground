@@ -47,54 +47,36 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-void test(){
-    int n,m,k;
-    cin>>n>>m>>k; // n mtrs // m mtr max jump // at max k mtr in water
-    string s="L";
-    string temp;
-    cin>>temp;
-    s+=temp;
-    s+="L"; // added log at begin and end
-    
-    int curr=0; // the current position // at log
-    bool possible=true;
-    while(curr<=n){ 
-      // either it is a log 
-      if(s[curr]=='L'){
-         // can go to curr+k
-         int temp=min(curr+m,n+1);
-         while(s[temp]!='L') temp--; // will find the last log
-         if(temp==curr){ // no logs in curr+1 to curr+k
-          temp=min(curr+m,n+1);
-          while(s[temp]!='W' && temp>curr) temp--;
-          }
-           // not even water present
-          if(temp==curr){possible=false; break;}
-         
-         // hence now I am either at a log or water
-          curr=temp;
-          if(curr==n+1){break;} // reached last 
-        
-      }
-      
-      // or it is water
-      // or it is croc
-      while(s[curr]=='W'){
-          if(k<=0) {possible=false; break;}
-          else { k--; curr++;}
-          if(curr==n+1){break;} 
-         }
-      if(!possible) break;
-        
-      if(s[curr]=='C'){
-          possible=false; break;
-         }
-         
+vector<vector<int>> buildCumulativeFrequency(const string& s) {
+    int n = s.size();
+    vector<vector<int>> cumulativeFreq(n + 1, vector<int>(26, 0));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < 26; ++j) {
+            cumulativeFreq[i + 1][j] = cumulativeFreq[i][j];
+        }
+        cumulativeFreq[i + 1][s[i] - 'a']++;
     }
-    if(possible) cout<<"YES"<<endl;
-    else cout<<"NO"<<endl;
+    return cumulativeFreq;
+}
 
-} 
+int minOperationsToSortEqual(const string& a, const string& b, int l, int r,
+vector<vector<int>> & cumulativeA, vector<vector<int>> & cumulativeB
+) {
+    
+    
+        
+        int freqDiff = 0;
+
+        for (int j = 0; j < 26; ++j) {
+            int countA = cumulativeA[r][j] - cumulativeA[l - 1][j];
+            int countB = cumulativeB[r][j] - cumulativeB[l - 1][j];
+            freqDiff += abs(countA - countB);
+        }
+        return freqDiff/2;
+   
+
+    
+}
 //---------------------------------------------------------------------------//
 int main(){
     ios::sync_with_stdio(0);
@@ -102,7 +84,18 @@ int main(){
     int t;
     cin>>t; // For single test case remove this one
     //t=1; // And use this one
-    FOR(i,0,t) test();
+    for(int i=0; i<t; i++){
+        int n,k;
+        cin>>n>>k;
+        string a,b;
+        cin>>a>>b;
+        vector<vector<int>> cumulativeA = buildCumulativeFrequency(a);
+        vector<vector<int>> cumulativeB = buildCumulativeFrequency(b);
+        for(int i=0; i<k; i++){ 
+            int l,r;
+            cin>>l>>r;
+            cout<<minOperationsToSortEqual(a,b,l,r,cumulativeA,cumulativeB)<<endl;}
+    }
     
 
 }

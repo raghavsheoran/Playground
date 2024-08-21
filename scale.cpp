@@ -48,51 +48,19 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    int n,m,k;
-    cin>>n>>m>>k; // n mtrs // m mtr max jump // at max k mtr in water
-    string s="L";
-    string temp;
-    cin>>temp;
-    s+=temp;
-    s+="L"; // added log at begin and end
-    
-    int curr=0; // the current position // at log
-    bool possible=true;
-    while(curr<=n){ 
-      // either it is a log 
-      if(s[curr]=='L'){
-         // can go to curr+k
-         int temp=min(curr+m,n+1);
-         while(s[temp]!='L') temp--; // will find the last log
-         if(temp==curr){ // no logs in curr+1 to curr+k
-          temp=min(curr+m,n+1);
-          while(s[temp]!='W' && temp>curr) temp--;
-          }
-           // not even water present
-          if(temp==curr){possible=false; break;}
-         
-         // hence now I am either at a log or water
-          curr=temp;
-          if(curr==n+1){break;} // reached last 
-        
-      }
-      
-      // or it is water
-      // or it is croc
-      while(s[curr]=='W'){
-          if(k<=0) {possible=false; break;}
-          else { k--; curr++;}
-          if(curr==n+1){break;} 
-         }
-      if(!possible) break;
-        
-      if(s[curr]=='C'){
-          possible=false; break;
-         }
-         
+    int n,k;
+    cin>>n>>k;
+    vector<vector<char>> nums(n,vector<char>(n));
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++) cin>>nums[i][j];
     }
-    if(possible) cout<<"YES"<<endl;
-    else cout<<"NO"<<endl;
+    for(int i=0; i<n; i+=k){
+        for(int j=0; j<n; j+=k){
+            cout<<nums[i][j];
+        }
+        cout<<endl;
+    }
+    
 
 } 
 //---------------------------------------------------------------------------//

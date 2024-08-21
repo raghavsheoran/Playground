@@ -48,51 +48,25 @@ using namespace std;
 #define pb push_back
 //---------------------------------------------------------------------------//
 void test(){
-    int n,m,k;
-    cin>>n>>m>>k; // n mtrs // m mtr max jump // at max k mtr in water
-    string s="L";
-    string temp;
-    cin>>temp;
-    s+=temp;
-    s+="L"; // added log at begin and end
-    
-    int curr=0; // the current position // at log
-    bool possible=true;
-    while(curr<=n){ 
-      // either it is a log 
-      if(s[curr]=='L'){
-         // can go to curr+k
-         int temp=min(curr+m,n+1);
-         while(s[temp]!='L') temp--; // will find the last log
-         if(temp==curr){ // no logs in curr+1 to curr+k
-          temp=min(curr+m,n+1);
-          while(s[temp]!='W' && temp>curr) temp--;
-          }
-           // not even water present
-          if(temp==curr){possible=false; break;}
-         
-         // hence now I am either at a log or water
-          curr=temp;
-          if(curr==n+1){break;} // reached last 
-        
-      }
-      
-      // or it is water
-      // or it is croc
-      while(s[curr]=='W'){
-          if(k<=0) {possible=false; break;}
-          else { k--; curr++;}
-          if(curr==n+1){break;} 
-         }
-      if(!possible) break;
-        
-      if(s[curr]=='C'){
-          possible=false; break;
-         }
-         
-    }
-    if(possible) cout<<"YES"<<endl;
-    else cout<<"NO"<<endl;
+   int n,m,k;
+   cin>>n>>m>>k;
+   int w;
+   cin>>w;
+   vector<int> nums(w);
+   for(int i=0; i<w; i++) cin>>nums[i];
+   sort(nums.begin(),nums.end()); 
+   reverse(nums.begin(),nums.end());
+   int total=n*m;
+   int k_square=total-(4*(k-1)*(k-1));
+   int index=0; // current gorrila height
+   int res=0;
+   while(index<w && index<k_square){
+    res+=k*k*nums[index];
+    index++;
+   }
+   
+cout<<res<<endl;
+
 
 } 
 //---------------------------------------------------------------------------//

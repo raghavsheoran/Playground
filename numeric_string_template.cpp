@@ -47,52 +47,49 @@ using namespace std;
 #define SORT(x) sort(all(x))
 #define pb push_back
 //---------------------------------------------------------------------------//
-void test(){
-    int n,m,k;
-    cin>>n>>m>>k; // n mtrs // m mtr max jump // at max k mtr in water
-    string s="L";
-    string temp;
-    cin>>temp;
-    s+=temp;
-    s+="L"; // added log at begin and end
-    
-    int curr=0; // the current position // at log
+bool match(string & s, unordered_map<int,vector<int>> & final){
     bool possible=true;
-    while(curr<=n){ 
-      // either it is a log 
-      if(s[curr]=='L'){
-         // can go to curr+k
-         int temp=min(curr+m,n+1);
-         while(s[temp]!='L') temp--; // will find the last log
-         if(temp==curr){ // no logs in curr+1 to curr+k
-          temp=min(curr+m,n+1);
-          while(s[temp]!='W' && temp>curr) temp--;
-          }
-           // not even water present
-          if(temp==curr){possible=false; break;}
-         
-         // hence now I am either at a log or water
-          curr=temp;
-          if(curr==n+1){break;} // reached last 
-        
-      }
-      
-      // or it is water
-      // or it is croc
-      while(s[curr]=='W'){
-          if(k<=0) {possible=false; break;}
-          else { k--; curr++;}
-          if(curr==n+1){break;} 
-         }
-      if(!possible) break;
-        
-      if(s[curr]=='C'){
-          possible=false; break;
-         }
-         
+    map<char,vector<int>> mp;
+    for(int i=0; i<s.length(); i++){
+        mp[s[i]].push_back(i); 
+        // first character mp[s[i]][0]
+        if(final.find(mp[s[i]][0])==final.end()) {possible=false; break;} // no such first character
+        else{
+            if(mp[s[i]].size()>final[mp[s[i]][0]].size()) {possible=false; break;}
+            else{
+                int n=mp[s[i]].size();
+                if(final[mp[s[i]][0]][n-1]!=i) {possible=false; break;}
+            }
+        }
     }
-    if(possible) cout<<"YES"<<endl;
-    else cout<<"NO"<<endl;
+    return possible;
+}
+
+
+
+void test(){
+   int n;
+   cin>>n;
+   map<int,vector<int>> mp;
+   for(int i=0; i<n; i++) {
+    int k;
+    cin>>k;
+    mp[k].push_back(i);
+   } 
+   unordered_map<int,vector<int>> final;
+   for(auto it=mp.begin(); it!=mp.end(); it++){
+    final[(it->second)[0]]=it->second;
+   }
+   int k;
+   cin>>k;
+   for(int i=0; i<k; i++){
+    string s;
+    cin>>s;
+    if(s.length()!=n) cout<<"NO"<<endl;
+    else {
+    if(match(s,final)) cout<<"YES"<<endl;
+    else cout<<"NO"<<endl;}
+   }
 
 } 
 //---------------------------------------------------------------------------//
